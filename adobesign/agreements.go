@@ -418,7 +418,7 @@ func (s *AgreementService) CreateAgreement(ctx context.Context, request Agreemen
 // ref: https://secure.na1.echosign.com/public/docs/restapi/v6#!/agreements
 func (s *AgreementService) GetAgreementAll(ctx context.Context) (*Agreement, error) {
 
-	u := fmt.Sprintf("%s/%s", agreementsPath, agreementId)
+	u := fmt.Sprintf("%s/%s", agreementsPath)
 
 	req, err := s.client.NewRequest("GET", u, nil)
 	if err != nil {
