@@ -416,7 +416,7 @@ func (s *AgreementService) CreateAgreement(ctx context.Context, request Agreemen
 }
 // GetAllAgreement retrieves all existing Adobe Sign Agreements
 // ref: https://secure.na1.echosign.com/public/docs/restapi/v6#!/agreements
-func (s *AgreementService) GetAgreementAll(ctx context.Context) (*Agreement, error) {
+func (s *AgreementService) GetAgreementAll(ctx context.Context) (string, error) {
 
 	u := fmt.Sprintf("%s", agreementsPath)
 
