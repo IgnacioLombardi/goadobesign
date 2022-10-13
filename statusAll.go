@@ -8,7 +8,7 @@ import (
 	"time"
 	"flag"
 
-	"github.com/CPerezMahisoft/go-adobesign/adobesign"
+	"github.com/IgnacioLombardi/goadobesign/adobesign"
 )
 
 

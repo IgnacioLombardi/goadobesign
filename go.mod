@@ -1,4 +1,4 @@
-module github.com/CPerezMahisoft/go-adobesign
+module github.com/IgnacioLombardi/goadobesign
 
 go 1.16
 
