@@ -150,6 +150,26 @@ type Agreement struct {
 	WorkflowId string `json:"workflowId,omitempty"`
 }
 
+type userAgreementList struct {
+	Id					string				 `json:"id,omitempty"`
+	Type				string				 `json:"type,omitempty"`
+	Name                string               `json:"name,omitempty"`
+	GroupId             string				 `json:"groupId,omitempty"`
+	DisplayDate			string				 `json:"displayDate,omitempty"`
+	DisplayParticipantSetInfos []struct {
+		DisplayUserSetMemberInfos []struct {
+			FullName		string `json:"fullName,omitempty"`
+			Email           string `json:"email,omitempty"`
+			Company			string `json:"company,omitempty"`
+		} `json:"displayUserSetMemberInfos,omitempty"`
+	} `json:"displayParticipantSetInfos,omitempty"`
+	LatestVersionId		string				 `json:"latestVersionId,omitempty"`
+	Status				string				 `json:"status,omitempty"`
+	Esign				bool				 `json:"esign,omitempty"`
+	Hidden				bool				 `json:"hidden,omitempty"`
+}
+
+
 type CreateAgreementResponse struct {
 	Id string `json:"id,omitempty"`
 }
@@ -416,21 +436,24 @@ func (s *AgreementService) CreateAgreement(ctx context.Context, request Agreemen
 }
 // GetAllAgreement retrieves all existing Adobe Sign Agreements
 // ref: https://secure.na1.echosign.com/public/docs/restapi/v6#!/agreements
-func (s *AgreementService) GetAgreementAll(ctx context.Context) (string, error) {
+func (s *AgreementService) GetAgreementAll(ctx context.Context) ([]byte, error) {
 
-	u := fmt.Sprintf("%s", agreementsPath)
+	//u := fmt.Sprintf("%s", agreementsPath)
+	
 
-	req, err := s.client.NewRequest("GET", u, nil)
+	req, err := s.client.NewRequest("GET", "https://api.na4.adobesign.com:443/api/rest/v6/agreements?pageSize=99999999", nil)
+	
+
 	if err != nil {
 		return nil, err
 	}
-
-	var response string
+	            //bytes.Buffer
+	var response bytes.Buffer
 	if _, err := s.client.Do(ctx, req, &response); err != nil {
 		return nil, err
 	}
-
-	return response, nil
+	             //.Bytes()
+	return response.Bytes() , nil
 }
 
 // GetAgreement retrieves an existing Adobe Sign Agreement

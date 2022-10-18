@@ -5,13 +5,13 @@ import (
 	"fmt"
 	"log"
 	"strings"
-	"time"
+	//"time"
 	"flag"
+	"bytes"
+	//"encoding/json"
 
 	"github.com/IgnacioLombardi/goadobesign/adobesign"
 )
-
-
 
 type Parametros []string
 
@@ -43,8 +43,11 @@ func main() {
 		if err != nil {
 		log.Fatal(err)
 	}
+		
 
-		fmt.Println(agreement)
-		time.Sleep(10 * time.Second)
+		fmt.Println(bytes.NewBuffer(agreement).String())
+
+		//fmt.Println(agreement.Bytes())
+		//time.Sleep(10 * time.Second)
 
 }
