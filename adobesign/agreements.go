@@ -496,7 +496,7 @@ func (s *AgreementService) GetAuditTrail(ctx context.Context, agreementId string
 // GetCombinedDocument retrieves a single combined PDF document for the documents associated with an agreement
 // ref: https://secure.na1.echosign.com/public/docs/restapi/v6#!/agreements/getCombinedDocument
 func (s *AgreementService) GetCombinedDocument(ctx context.Context, agreementId string) ([]byte, error) {
-	u := fmt.Sprintf("%s/%s/combinedDocument", agreementsPath, agreementId)
+	u := fmt.Sprintf("%s/%s/combinedDocument/url", agreementsPath, agreementId)
 
 	req, err := s.client.NewRequest("GET", u, nil)
 	if err != nil {
